@@ -1,5 +1,5 @@
 #
-# モンゴメリ法を実行するプログラム
+# ModBinを実行するプログラム
 #
 
 import math
@@ -38,6 +38,9 @@ def MR(T, count):
         count += 1
         return m_2 - N, count
 
+#
+# ModBinを実行するメソッド
+#
 def mod_bin(c, d, N):
     count = 0
     print('\n************* Mod_bin *************')
@@ -51,7 +54,7 @@ def mod_bin(c, d, N):
         if array_d[i] == 1:
             count += 1
             large_M, count = MR(large_M * large_C, count)
-    m, _ = MR(large_M, count)
+    m, count = MR(large_M, count)
 
     return m, count
 
