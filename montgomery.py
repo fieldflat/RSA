@@ -28,8 +28,9 @@ def mod_equal_minus_1(N, R):
 # モンゴメリ還元
 #
 def MR(T, count):
-    tr, count = bin.modulo(T, R, count)
-    m_1, count = bin.modulo((tr * N_dash), R, count)
+    #tr, count = bin.modulo(T, R, count)
+    m_1 = ((T % R) * N_dash) % R
+    #m_1, count = bin.modulo((tr * N_dash), R, count)
     m_2 = (T + m_1*N)//R
     if m_2 <= N:
         return m_2, count
