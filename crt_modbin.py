@@ -17,15 +17,17 @@ def mod_equal_1_crt(B, n):
 # CRT-ModBinを実行するメソッド
 #
 def crt(c,d,N,p,q):
-    print('\n\nc={0}, d={1}, N={2}, p={3}, q={4}'.format(c,d,N,p,q))
+    #print('\n\nc={0}, d={1}, N={2}, p={3}, q={4}'.format(c,d,N,p,q))
     a, count1 = mon.mod_bin(c, d, p)
     b, count2 = mon.mod_bin(c, d, q)
-    print('\na = {0}, b = {1}'.format(a, b))
+    #print('\na = {0}, b = {1}'.format(a, b))
     count = count1 + count2
 
     # Q, Pの計算
     y = mod_equal_1_crt(q, p)
     x = mod_equal_1_crt(p, q)
+
+    # 以下の二つはcountを操作しなくて良い
     Q, count3 = bin.modulo(q*y, N, count)
     P, count3 = bin.modulo(p*x, N, count)
 

@@ -1,0 +1,87 @@
+#
+# バイナリ法の擬似コード
+# 入力：c, d, N
+# 出力：m = c^d mod N
+#
+
+# バイナリ法を実行するメソッド
+def binary_method(c, d, N)
+  m = c
+  count = 0
+  for i=(l-2) to 0 do
+    m, count = modulo(m*m, N, count)   #moduloは引数を二つ返す
+    if d[i] = 1 then
+      count += 1   #d[i]=1のときはcountをインクリメント
+      m, count = modulo(m*c, N, count)
+    end if
+  end for
+  return m, count
+end
+
+# 以下はバイナリ法において, mod計算をするためのメソッド
+def modulo(x, y, count)
+  if x > y then
+    count += 1   #x>yのときは, 余分に一回計算するのでcountをインクリメント
+    x = x % y
+  end if
+  return x, count
+end
+
+
+
+
+
+
+#
+# ModBinの擬似コード
+# 入力：c, d, N
+# 出力：m = c^d mod N
+# RとR_2(=R*R)は事前に設定済み
+#
+
+# ModBinを実行するメソッド
+def mod_bin(c, d, N)
+  count = 0
+  C, count = MR(c*(R_2), count)
+  M = C
+  for i=(l-2) to 0 do
+    M, count = MR(M*M, count)
+    if d[i] = 1 then
+      count += 1
+      M, count = MR(M*C, count)
+    end if
+  end for
+  m, count = MR(M, count)
+  return m, count
+end
+
+# モンゴメリ還元を実行するメソッド
+# Rは事前に設定済み
+def MR(T, count)
+  m1 = ((T % R) * N) % R
+  m2 = (T + N*m1) / R
+  if m2 <= N then
+    return m2, count
+  else
+    count += 1
+    return (m2 - N), count
+  end if
+end
+
+
+
+
+
+
+#
+# CRT-ModBinの擬似コード
+# 入力：c,d,N,p,q,P,Q
+# 出力：m = c^d mod N
+#
+
+def crt_modbin(c,d,N,p,q,Q,P)
+  count = 0
+  a, count = mod_bin(c,d,p)
+  b, count = mod_bin(c,d,q)
+  return (a*Q + b*P) % N
+end

@@ -16,7 +16,7 @@ phi_N = main.phi_N
 # c, dを入力として, m = c**d mod N を返す
 #
 def binary_method(c, d, N):
-    print('*************binary_method*************')
+    #print('*************binary_method*************')
 
     count = 0
     m = c
@@ -37,6 +37,7 @@ def binary_method(c, d, N):
 #
 def modulo(x, y, count):
 
+
     if x > y:
         count += 1
         x = x % y
@@ -46,6 +47,7 @@ def modulo(x, y, count):
         count += 1
         x -= y
     """
+
     return x, count
 
 #

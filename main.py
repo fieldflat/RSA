@@ -2,7 +2,7 @@
 # 定数一覧
 #
 p = 113
-q = 97
+q = 109
 N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
 
@@ -33,20 +33,25 @@ if __name__ == '__main__':
 
     # 以下, バイナリ法の実施により,
     # 平文mとカウント数countを計算
+    print('*************binary_method*************')
     m, count = bin.binary_method(c, d, N)
-    print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
+    #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
     print('binary(c, d, N) = {0}'.format(m))
     print('count = {0}'.format(count))
 
+
     # 以下Mod_Bin
+    print('\n************* Mod_bin *************')
     m, count = mon.mod_bin(c, d, N)
-    print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
+    #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
     print('mod_bin(c, d, N) = {0}'.format(m))
     print('count = {0}'.format(count))
 
+
     # 以下CRT-Modbin
+    print('\n************* CRT-Mod_bin *************')
     m, count = crt.crt(c,d,N,p,q)
-    print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
+    #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
     print('CRT-ModBin(c, d, N, p, q) = {0}'.format(m))
     print('count = {0}'.format(count))
 
