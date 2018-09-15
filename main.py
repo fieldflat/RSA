@@ -29,15 +29,16 @@ if __name__ == '__main__':
     # 以下, 鍵と暗号文の設定
     c = 153
     d, e = random.choice(set_array)
-    print('******** c = {0} , d = {1} , e = {2} ********\n'.format(c, bin.binary_d(d), e))
+    print('******** c = {0} , d = {1}, {2} , e = {3} ********\n'.format(c, bin.binary_d(d), d, e))
 
     # 以下, バイナリ法の実施により,
     # 平文mとカウント数countを計算
     print('*************binary_method*************')
-    m, count = bin.binary_method(c, d, N)
+    m, mod_count, mult_count = bin.binary_method(c, d, N)
     #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
     print('binary(c, d, N) = {0}'.format(m))
-    print('count = {0}'.format(count))
+    print('mod_count = {0}'.format(mod_count))
+    print('mult_count = {0}'.format(mult_count))
 
 
     # 以下Mod_Bin
@@ -59,6 +60,6 @@ if __name__ == '__main__':
     # 一致性のチェック
     print('\n********** 暗号化(一致性のチェック) ***********')
     print('m = {0}, e = {1}, N = {2}'.format(m, e, N))
-    c, count = bin.binary_method(m, e, N)
+    c, mod_count, mult_count = bin.binary_method(m, e, N)
     print('binary(m, e, N) = {0}'.format(c))
     print('暗号文 c = {0}\n\n'.format(c))

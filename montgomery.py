@@ -42,8 +42,9 @@ def MR(T, count):
 # ModBinを実行するメソッド
 #
 def mod_bin(c, d, N):
+    mod_count = 0
+    mult_count = 0
     count = 0
-    #print('\n************* Mod_bin *************')
     #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
     large_C, count = MR(c*R_2, count)
     large_M = large_C
