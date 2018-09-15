@@ -39,6 +39,7 @@ def binary_method(c, d, N):
 #
 def modulo(x, y, count):
 
+
     if x > y:
         count += 1
         x = x % y

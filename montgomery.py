@@ -27,16 +27,25 @@ def mod_equal_minus_1(N, R):
 #
 # モンゴメリ還元
 #
-def MR(T, count):
-    #tr, count = bin.modulo(T, R, count)
-    m_1 = ((T % R) * N_dash) % R
-    #m_1, count = bin.modulo((tr * N_dash), R, count)
+def MR(T, mod_count, mult_count):
+    """
+    tr, mod_count = bin.modulo(T, R, mod_count)
+    mult_count += 1 # tr * N'を実行するため
+    m_1, mod_count = bin.modulo((tr * N_dash), R, mod_count)
+    mult_count += 1 # m1 * Nを実行するため
     m_2 = (T + m_1*N)//R
+    """
+
+    mult_count += 1
+    m_1 = ((T % R) * N_dash) % R
+    mult_count += 1
+    m_2 = (T + m_1*N)//R
+
     if m_2 <= N:
-        return m_2, count
+        return m_2, mod_count, mult_count
     else:
-        count += 1
-        return m_2 - N, count
+        mod_count += 1
+        return m_2 - N, mod_count, mult_count
 
 #
 # ModBinを実行するメソッド
@@ -44,19 +53,21 @@ def MR(T, count):
 def mod_bin(c, d, N):
     mod_count = 0
     mult_count = 0
-    count = 0
+    #count = 0
     #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
-    large_C, count = MR(c*R_2, count)
+    mult_count += 1 # c*R_2を実行するため, mult_countを1インクリメント
+    large_C, mod_count, mult_count = MR(c*R_2, mod_count, mult_count)
     large_M = large_C
     array_d = bin.binary_d(d)
     l = len(array_d)
     for i in range(1, l):
-        large_M, count = MR(large_M * large_M, count)
+        mult_count += 1 # M*Mを実行するため
+        large_M, mod_count, mult_count = MR(large_M * large_M, mod_count, mult_count)
         if array_d[i] == 1:
-            count += 1
-            large_M, count = MR(large_M * large_C, count)
-    m, count = MR(large_M, count)
+            mult_count += 1 # M*Cを実行するため
+            large_M, mod_count, mult_count = MR(large_M * large_C, mod_count, mult_count)
+    m, mod_count, mult_count = MR(large_M, mod_count, mult_count)
 
-    return m, count
+    return m, mod_count, mult_count
 
 N_dash = mod_equal_minus_1(N, R)
