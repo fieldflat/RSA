@@ -64,6 +64,10 @@ if __name__ == '__main__':
     # 一致性のチェック
     print('\n********** 暗号化(一致性のチェック) ***********')
     print('m = {0}, e = {1}, N = {2}'.format(m, e, N))
-    c, mod_count, mult_count = bin.binary_method(m, e, N)
+    c, _, _ = bin.binary_method(m, e, N)
     print('binary(m, e, N) = {0}'.format(c))
+    c, _, _ = mon.mod_bin(m, e, N)
+    print('mod_bin(m, e, N) = {0}'.format(c))
+    c, _, _ = crt.crt(m, e, N, p, q)
+    print('CRT-ModBin(m, e, N, p, q) = {0}'.format(c))
     print('暗号文 c = {0}\n\n'.format(c))

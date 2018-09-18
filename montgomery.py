@@ -32,7 +32,6 @@ def MR(T, mod_count, mult_count):
     tr, mod_count = bin.modulo(T, R, mod_count) # tr <= T % R の計算
     trn, mult_count = bin.multiply(tr, N_dash, mult_count) # trn <= (T % R) * N'の計算
     m_1, mod_count = bin.modulo(trn, R, mod_count) # m_1 <= ((T % R) * N') % Rの計算
-    #mult_count += 1 # m1 * Nを実行するため
     mn, mult_count = bin.multiply(m_1, N, mult_count)
     """
     質問その2：m_2計算時の「//」はmod_countをインクリメントしなくて良いか.
@@ -58,7 +57,7 @@ def mod_bin(c, d, N):
     """
     質問その4：RとR_2の計算はカウント対象でない (ついでにRの計算方法があっているかを確認する).
     """
-    print('length_N: {0}, R : {1}, R_2 : {2}, N_dash : {3}'.format(length_N, R, R_2, N_dash))
+    #print('length_N: {0}, R : {1}, R_2 : {2}, N_dash : {3}'.format(length_N, R, R_2, N_dash))
     cr, mult_count = bin.multiply(c, R_2, mult_count)
     large_C, mod_count, mult_count = MR(cr, mod_count, mult_count)
     large_M = large_C
