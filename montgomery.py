@@ -55,6 +55,10 @@ def mod_bin(c, d, N):
     mod_count = 0
     mult_count = 0
     #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
+    """
+    質問その4：RとR_2の計算はカウント対象でない (ついでにRの計算方法があっているかを確認する).
+    """
+    print('length_N: {0}, R : {1}, R_2 : {2}, N_dash : {3}'.format(length_N, R, R_2, N_dash))
     cr, mult_count = bin.multiply(c, R_2, mult_count)
     large_C, mod_count, mult_count = MR(cr, mod_count, mult_count)
     large_M = large_C
