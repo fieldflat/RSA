@@ -25,32 +25,40 @@ def binary_method(c, d, N):
     l = len(array_d) # 2進表現の長さを獲得.
     for i in range(1, l):
         #m = (m ** 2) % N
-        mult_count += 1 # mを二乗するため
-        m, mod_count = modulo(m**2, N, mod_count)
+        m, mult_count = multiply(m, m, mult_count) # m = m*mの実行
+        m, mod_count = modulo(m, N, mod_count) # m % Nの実行
         if array_d[i] == 1:
             #m = (m*c) % N
-            mult_count += 1 # m*cを実行するため
-            m, mod_count = modulo(m*c, N, mod_count)
+            m, mult_count = multiply(m, c, mult_count) # m = m*cの実行
+            m, mod_count = modulo(m, N, mod_count) # m % Nの実行
     return m, mod_count, mult_count
 
 #
-# x mod yの値を, %演算子を使わずに計算する.
-# 余分な計算をした場合はcountを1インクリメントする.
+# x mod yの値を計算する.
+# x > yの場合はmod_countを1インクリメントする.
 #
-def modulo(x, y, count):
+def modulo(x, y, mod_count):
 
+    """
+    質問その1：この条件分岐は必要かどうか？
+    """
 
     if x > y:
-        count += 1
+        mod_count += 1
         x = x % y
 
-    """
-    while x > y:
-        count += 1
-        x -= y
-    """
+    return x, mod_count
 
-    return x, count
+#
+# x * yの値を計算し, mult_countの値を
+# インクリメントしてそれぞれ返す.
+#
+def multiply(x, y, mult_count):
+
+    mult_count += 1
+    ans = x * y
+    return ans, mult_count
+
 
 #
 # 10進数dを2進数に変換し, 配列として返す.

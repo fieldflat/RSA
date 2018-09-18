@@ -32,10 +32,12 @@ def crt(c,d,N,p,q):
 
     # 以下の二つはcountを操作しなくて良い
     # あらかじめ計算しなければいけないものなので.
-    Q, no_count_mod_count = bin.modulo(q*y, N, mod_count)
-    P, no_count_mod_count3 = bin.modulo(p*x, N, mod_count)
+    Q, _ = bin.modulo(q*y, N, mod_count)
+    P, _ = bin.modulo(p*x, N, mod_count)
 
-    mult_count += 2 # a*Q+b*Pを実行するため.
-    ans, mod_count = bin.modulo(a*Q+b*P, N, mod_count)
+    aq, mult_count = bin.multiply(a, Q, mult_count)
+    bp, mult_count = bin.multiply(b, P, mult_count)
+    aqbp = aq + bp
+    ans, mod_count = bin.modulo(aqbp, N, mod_count)
 
     return ans, mod_count, mult_count
