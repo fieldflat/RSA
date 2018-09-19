@@ -1,8 +1,8 @@
 #
 # 定数一覧
 #
-p = 5
-q = 7
+p = 301
+q = 209
 N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
 
@@ -24,12 +24,12 @@ if __name__ == '__main__':
     # 以下, 鍵生成アルゴリズム
     array = key.coprime(phi_N)
     set_array = key.mod_equal_1(array, phi_N) # これで[d,e]のセットを取得できる.
-    #print(set_array)
+    print(set_array)
 
     # 以下, 鍵と暗号文の設定
     c = 3
     d, e = random.choice(set_array)
-    d, e = 5, 5
+    #d, e = 5, 5
     #d, e = 3707, 6323    #p, q, c = 71, 97, 153
     print('******** c = {0} , d = {1}, {2} , e = {3} ********\n'.format(c, bin.binary_d(d), d, e))
 

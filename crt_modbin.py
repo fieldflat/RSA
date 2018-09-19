@@ -24,6 +24,10 @@ def crt(c,d,N,p,q):
     mod_count = mod_count1 + mod_count2
     mult_count = mult_count1 + mult_count2
 
+    """
+    質問その5：以下を確認.
+    """
+
     # Q, Pの計算
     # countの操作はしなくて良い.
     # あらかじめ計算しなければいけないものなので.
