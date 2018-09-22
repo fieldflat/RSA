@@ -3,6 +3,7 @@
 #
 
 import math
+import random
 import main
 
 p = main.p
@@ -31,3 +32,30 @@ def mod_equal_1(array, phi_N):
                 set_array.append([d, e])
                 break
     return set_array
+
+#
+# 鍵の長さ, 1の最上位ビットの位置, 鍵の重みを指定して, それに対応する鍵のリストを作成する.
+#
+def make_d(length, top_bit, weight):
+    while True:
+        l = []
+        for i in range(0, length):
+            l.append(0)
+        for i in range(0, weight):
+            l[i] = 1
+        random.shuffle(l)
+        if l[top_bit] == 1:
+            return l
+
+#
+# 2進表現のリストを10進数に直して返す.
+#
+def change_decimal(list):
+    list.reverse()
+    #print(list)
+    k = 0
+    sum = 0
+    for i in list:
+        sum += i * (2 ** k)
+        k += 1
+    return sum
