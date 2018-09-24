@@ -7,8 +7,8 @@ N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
 Loop_times = 1000 # ループ回数
 d_length = 1024 # dの鍵長
-d_top_bit = 2 # dにおける1の最上位ビット
-d_weight = 780 # dの重み
+d_top_bit = 500 # dにおける1の最上位ビット
+d_weight = 512 # dの重み
 
 #
 # メイン関数
@@ -26,10 +26,13 @@ if __name__ == '__main__':
 
     binary_mod_count_list = []
     binary_mult_count_list = []
+    binary_sum_count_list = []
     modbin_mod_count_list = []
     modbin_mult_count_list = []
+    modbin_sum_count_list = []
     crt_mod_count_list = []
     crt_mult_count_list = []
+    crt_sum_count_list = []
 
     print('\n\n\n********* p = {0}, q = {1}, N = {2}, phi_n = {3} ********\n'.format(p, q, N, phi_N))
 
@@ -55,6 +58,7 @@ if __name__ == '__main__':
         m, mod_count, mult_count = bin.binary_method(c, d, N)
         binary_mod_count_list.append(mod_count)
         binary_mult_count_list.append(mult_count)
+        binary_sum_count_list.append(mod_count + mult_count)
         #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
         print('binary(c, d, N) = {0}'.format(m))
         print('mod_count = {0}'.format(mod_count))
@@ -68,6 +72,7 @@ if __name__ == '__main__':
         m, mod_count, mult_count = mon.mod_bin(c, d, N)
         modbin_mod_count_list.append(mod_count)
         modbin_mult_count_list.append(mult_count)
+        modbin_sum_count_list.append(mod_count + mult_count)
         #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
         print('mod_bin(c, d, N) = {0}'.format(m))
         print('mod_count = {0}'.format(mod_count))
@@ -81,6 +86,7 @@ if __name__ == '__main__':
         m, mod_count, mult_count = crt.crt(c,d,N,p,q)
         crt_mod_count_list.append(mod_count)
         crt_mult_count_list.append(mult_count)
+        crt_sum_count_list.append(mod_count + mult_count)
         #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
         print('CRT-ModBin(c, d, N, p, q) = {0}'.format(m))
         print('mod_count = {0}'.format(mod_count))
@@ -101,6 +107,6 @@ if __name__ == '__main__':
         print('CRT-ModBin(m, e, N, p, q) = {0}'.format(c))
         print('暗号文 c = {0}\n\n'.format(c))
         """
-    plot.plotting(binary_mod_count_list, binary_mult_count_list, 'binary')
-    plot.plotting(modbin_mod_count_list, modbin_mult_count_list, 'ModBin')
-    plot.plotting(crt_mod_count_list, crt_mult_count_list, 'CRT-ModBin')
+    plot.plotting(binary_mod_count_list, binary_mult_count_list,  binary_sum_count_list,'binary')
+    plot.plotting(modbin_mod_count_list, modbin_mult_count_list, modbin_sum_count_list,'ModBin')
+    plot.plotting(crt_mod_count_list, crt_mult_count_list, crt_sum_count_list, 'CRT-ModBin')
