@@ -7,7 +7,7 @@ N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
 Loop_times = 1000 # ループ回数
 d_length = 1024 # dの鍵長
-d_top_bit = 500 # dにおける1の最上位ビット
+d_top_bit = 1 # dにおける1の最上位ビット
 d_weight = 512 # dの重み
 
 #

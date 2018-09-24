@@ -3,6 +3,7 @@
 #
 
 import math
+import numpy as np
 import random
 import main
 
@@ -38,14 +39,27 @@ def mod_equal_1(array, phi_N):
 #
 def make_d(length, top_bit, weight):
     while True:
+        check = 1
         l = []
-        for i in range(0, length):
+        for i in range(0, length - top_bit + 1):
             l.append(0)
         for i in range(0, weight):
             l[i] = 1
         random.shuffle(l)
-        if l[top_bit] == 1:
+
+        if l[0] == 1:
+            for i in range(0, top_bit - 1):
+                l.insert(0, 0)
             return l
+
+        """
+        for i in range(0, top_bit-1):
+            if l[i] == 1:
+                check = 0
+
+        if (l[top_bit-1] == 1) and (check == 1):
+            return l
+        """
 
 #
 # 2進表現のリストを10進数に直して返す.
