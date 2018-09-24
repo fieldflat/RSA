@@ -1,14 +1,14 @@
 #
 # 定数一覧
 #
-p = 173
-q = 179
+p = 269
+q = 271
 N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
-Loop_times = 500 # ループ回数
-d_length = 256 # dの鍵長
+Loop_times = 1000 # ループ回数
+d_length = 1024 # dの鍵長
 d_top_bit = 2 # dにおける1の最上位ビット
-d_weight = 128 # dの重み
+d_weight = 780 # dの重み
 
 #
 # メイン関数
