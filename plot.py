@@ -56,8 +56,9 @@ def plotting(mod_list, mult_list, sum_list, title):
     plt.title('Mod - length={0}, top_bit={1}, weight={2}, LOOP={4}, {3}'.format(d_length, d_top_bit, d_weight, title, loop_times))
     plt.xlabel('count')
     plt.ylabel('frequency')
-    plt.legend(loc = 'upper left')
     plt.plot(mod_count, mod_freq, label='mod', marker='o')
+    #plt.plot(mod_count, mod_freq, label='mod')
+    plt.legend(loc = 'upper left')
     plt.savefig('graph/{0}_mod_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
@@ -69,8 +70,9 @@ def plotting(mod_list, mult_list, sum_list, title):
     plt.title('Mult - length={0}, top_bit={1}, weight={2}, LOOP={4}, {3}'.format(d_length, d_top_bit, d_weight, title, loop_times))
     plt.xlabel('count')
     plt.ylabel('frequency')
+    plt.plot(mult_count, mult_freq, label='mult', marker='o')
+    #plt.plot(mult_count, mult_freq, label='mult')
     plt.legend(loc = 'upper left')
-    plt.plot(mult_count, mult_freq, label='mult', marker='x')
     plt.savefig('graph/{0}_mult_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
@@ -81,8 +83,9 @@ def plotting(mod_list, mult_list, sum_list, title):
     plt.title('Sum - length={0}, top_bit={1}, weight={2}, LOOP={4}, {3}'.format(d_length, d_top_bit, d_weight, title, loop_times))
     plt.xlabel('count')
     plt.ylabel('frequency')
+    plt.plot(sum_count, sum_freq, label='sum', marker='o')
+    #plt.plot(sum_count, sum_freq, label='sum')
     plt.legend(loc = 'upper left')
-    plt.plot(sum_count, sum_freq, label='mod', marker='o')
     plt.savefig('graph/{0}_sum_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
