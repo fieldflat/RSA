@@ -39,8 +39,10 @@ def MR(T, mod_count, mult_count):
     m_2 = (T + mn)//R
 
     if m_2 <= N:
+        #print('MRにおいてmod_countを余分にインクリメントしませんでした.')
         return m_2, mod_count, mult_count
     else:
+        #print('MRにおいてmod_countを余分にインクリメントしました.')
         """
         質問その3：m_2 > Nのとき, mod_countを1インクリメントすべきかどうか.
         """
