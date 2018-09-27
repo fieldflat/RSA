@@ -19,7 +19,9 @@ def mod_equal_1_crt(B, n):
 def crt(c,d,N,p,q):
     #print('\n\nc={0}, d={1}, N={2}, p={3}, q={4}'.format(c,d,N,p,q))
     a, mod_count1, mult_count1 = mon.mod_bin(c, d, p)
+    print('c**d mod p = {0}'.format(a))
     b, mod_count2, mult_count2 = mon.mod_bin(c, d, q)
+    print('c**d mod q = {0}'.format(b))
     #print('\na = {0}, b = {1}'.format(a, b))
     mod_count = mod_count1 + mod_count2
     mult_count = mult_count1 + mult_count2

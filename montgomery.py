@@ -27,7 +27,12 @@ def mod_equal_minus_1(N, R):
 #
 # モンゴメリ還元
 #
-def MR(T, mod_count, mult_count):
+def MR(T, mod_count, mult_count, N_dash, N):
+    array_N = bin.binary_d(N)
+    length_N = len(array_N)
+    R = 2 ** length_N
+    R_2 = R*R % N
+    #print('N={0}, R={1}, R_2={2}, N_dash={3}'.format(N,R,R_2,N_dash))
 
     tr, mod_count = bin.modulo(T, R, mod_count) # tr <= T % R の計算
     trn, mult_count = bin.multiply(tr, N_dash, mult_count) # trn <= (T % R) * N'の計算
@@ -53,26 +58,37 @@ def MR(T, mod_count, mult_count):
 # ModBinを実行するメソッド
 #
 def mod_bin(c, d, N):
+    array_N = bin.binary_d(N)
+    length_N = len(array_N)
+    R = 2 ** length_N
+    R_2 = R*R % N
+    N_dash = mod_equal_minus_1(N, R)
+
     mod_count = 0
     mult_count = 0
     #print('c = {0}, d = {1}, N = {2}'.format(c, d, N))
+    print('c={0}, d={1}, N={2}, R={3}, R_2={4}, N_dash={5}'.format(c,d,N,R,R_2,N_dash))
     """
     質問その4：RとR_2の計算はカウント対象でない (ついでにRの計算方法があっているかを確認する).
     """
     #print('length_N: {0}, R : {1}, R_2 : {2}, N_dash : {3}'.format(length_N, R, R_2, N_dash))
     cr, mult_count = bin.multiply(c, R_2, mult_count)
-    large_C, mod_count, mult_count = MR(cr, mod_count, mult_count)
+    large_C, mod_count, mult_count = MR(cr, mod_count, mult_count, N_dash, N)
+    #print('MR({1}): large_C={0}'.format(large_C, cr))
     large_M = large_C
     array_d = bin.binary_d(d)
     l = len(array_d)
     for i in range(1, l):
         mm, mult_count = bin.multiply(large_M, large_M, mult_count)
-        large_M, mod_count, mult_count = MR(mm, mod_count, mult_count)
+        large_M, mod_count, mult_count = MR(mm, mod_count, mult_count, N_dash, N)
+        #print('MR({1}) large_M={0}'.format(large_M, mm))
         if array_d[i] == 1:
             mc, mult_count = bin.multiply(large_M, large_C, mult_count)
-            large_M, mod_count, mult_count = MR(mc, mod_count, mult_count)
-    m, mod_count, mult_count = MR(large_M, mod_count, mult_count)
+            large_M, mod_count, mult_count = MR(mc, mod_count, mult_count, N_dash, N)
+            #print('MR({1}) large_M={0}'.format(large_M, mc))
+    m, mod_count, mult_count = MR(large_M, mod_count, mult_count, N_dash, N)
+    print('MR({1}) m={0}'.format(m, large_M))
 
     return m, mod_count, mult_count
 
-N_dash = mod_equal_minus_1(N, R)
+#N_dash = mod_equal_minus_1(N, R)

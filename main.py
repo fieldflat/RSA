@@ -5,10 +5,10 @@ p = 269
 q = 271
 N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
-Loop_times = 1000 # ループ回数
+Loop_times = 5000 # ループ回数
 d_length = 1024 # dの鍵長
 d_top_bit = 1 # dにおける1の最上位ビット
-d_weight = 512 # dの重み
+d_weight = 600 # dの重み
 
 #
 # メイン関数
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     for i in range(0, Loop_times):
         # 以下, 鍵と暗号文の設定
-        c = random.randint(1, N) #(1, N-1)
+        c = random.randint(1, 1000) #(1, N-1)
         #c = 13
         #d, e = random.choice(set_array)
         d = key.make_d(d_length, d_top_bit, d_weight)
@@ -103,6 +103,7 @@ if __name__ == '__main__':
 
         if ((m1 == m2) and (m2 == m3)):
             correct += 1
+
         # 一致性のチェック
         """
         print('\n********** 暗号化(一致性のチェック) ***********')
@@ -115,8 +116,8 @@ if __name__ == '__main__':
         print('CRT-ModBin(m, e, N, p, q) = {0}'.format(c))
         print('暗号文 c = {0}\n\n'.format(c))
         """
+    print('correct: {0}'.format(correct))
+    print('crt_odd: {0}'.format(crt_odd))
     plot.plotting(binary_mod_count_list, binary_mult_count_list,  binary_sum_count_list,'binary')
     plot.plotting(modbin_mod_count_list, modbin_mult_count_list, modbin_sum_count_list,'ModBin')
     plot.plotting(crt_mod_count_list, crt_mult_count_list, crt_sum_count_list, 'CRT-ModBin')
-    print('correct: {0}'.format(correct))
-    print('crt_odd: {0}'.format(crt_odd))
