@@ -18,11 +18,14 @@ phi_N = main.phi_N
 #
 def binary_method(c, d, N):
 
+    #print('~~~~~~~~~~~~~ binary_method({0}, {1}, {2}) ~~~~~~~~~~~~~~~~~'.format(c, d, N))
     mod_count = 0 # 剰余計算のカウント
     mult_count = 0 # 乗算計算のカウント
     m = c
     array_d = binary_d(d) # 鍵dを2進表現にしてリストに格納する
+    #print('array_d = {0}'.format(array_d))
     l = len(array_d) # 2進表現の長さを獲得.
+    #print('length(array_d) = {0}'.format(l))
     for i in range(1, l):
         #m = (m ** 2) % N
         m, mult_count = multiply(m, m, mult_count) # m = m*mの実行
@@ -42,11 +45,11 @@ def modulo(x, y, mod_count):
     """
     質問その1：この条件分岐は必要かどうか？
     """
-
+    #print('modulo({0}, {1}, {2}) = '.format(x, y, mod_count))
     if x > y:
         mod_count += 1
         x = x % y
-
+    #print('{0}, {1}'.format(x, mod_count))
     return x, mod_count
 
 #
@@ -55,8 +58,10 @@ def modulo(x, y, mod_count):
 #
 def multiply(x, y, mult_count):
 
+    #print('multiply({0}, {1}, {2}) = '.format(x, y, mult_count) )
     mult_count += 1
     ans = x * y
+    #print('{0}, {1}'.format(ans, mult_count))
     return ans, mult_count
 
 

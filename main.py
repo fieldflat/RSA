@@ -5,10 +5,10 @@ p = 269
 q = 271
 N = p * q
 phi_N = (p-1)*(q-1) # Nのオイラー数
-Loop_times = 1000 # ループ回数
-d_length = 1024 # dの鍵長
+Loop_times = 10 # ループ回数
+d_length = 5 # dの鍵長
 d_top_bit = 1 # dにおける1の最上位ビット
-d_weight = 600 # dの重み
+d_weight = 3 # dの重み
 
 #
 # メイン関数
@@ -24,6 +24,9 @@ if __name__ == '__main__':
     import plot
     import random
 
+    #
+    # カウント数を格納しておくためのリスト
+    #
     binary_mod_count_list = []
     binary_mult_count_list = []
     binary_sum_count_list = []
@@ -36,10 +39,11 @@ if __name__ == '__main__':
 
     print('\n\n\n********* p = {0}, q = {1}, N = {2}, phi_n = {3} ********\n'.format(p, q, N, phi_N))
 
-    correct = 0
-    crt_odd = 0
+    correct = 0 # 3種類のアルゴリズムの復号結果が一致しているかを確認する変数. ( = LOOP_timesとなれば完璧.)
+    crt_odd = 0 # CRT-ModbinにおいてSumのカウント数が奇数であるかどうかを確認する変数.
+
     # 以下, 鍵生成アルゴリズム
-    array = key.coprime(phi_N)
+    #array = key.coprime(phi_N)
     #set_array = key.mod_equal_1(array, phi_N) # これで[d,e]のセットを取得できる.
     #print(set_array)
 
@@ -52,6 +56,7 @@ if __name__ == '__main__':
         d = key.change_decimal(d)
         #d = 129667142224493376692598009254433971104142689639133939016663805235690514764070439278340529821593613733767736085840342773227562005989366225702930262500188315921135735194352545776495216733861881734424315530019034559017641676246678908946030724757838055909739018695585134456243742833078805185867721830502040224979
         #d = 98988172907157536041411651836332915409495238193958618881994891816204855747906446866341871818009754294835341535624597289908621427392149320450427205852149548332287353115497516242401599421634979853506638393804768050236069253337668774919239694949456378470058673515155977335130447038781976130436286554482667842358
+
         print('\n\n************* {0}回目 ***************'.format(i+1))
         print('******** c = {0} , d = {1}, {2}  ********\n'.format(c, bin.binary_d(d), d))
         #print('******** c = {0} , d = {1}, {2} , e = {3} ********\n'.format(c, bin.binary_d(d), d, e))
@@ -98,13 +103,14 @@ if __name__ == '__main__':
         #print('crt_mod_count_list = {0}'.format(crt_mod_count_list))
         #print('crt_mult_count_list = {0}'.format(crt_mult_count_list))
 
+
+        # 一致性のチェック
         if ((mod_count3 + mult_count3) % 2 == 1):
             crt_odd += 1
 
         if ((m1 == m2) and (m2 == m3)):
             correct += 1
 
-        # 一致性のチェック
         """
         print('\n********** 暗号化(一致性のチェック) ***********')
         print('m = {0}, e = {1}, N = {2}'.format(m, e, N))
@@ -118,6 +124,9 @@ if __name__ == '__main__':
         """
     print('correct: {0}'.format(correct))
     print('crt_odd: {0}'.format(crt_odd))
+
+    """
     plot.plotting(binary_mod_count_list, binary_mult_count_list,  binary_sum_count_list,'binary')
     plot.plotting(modbin_mod_count_list, modbin_mult_count_list, modbin_sum_count_list,'ModBin')
     plot.plotting(crt_mod_count_list, crt_mult_count_list, crt_sum_count_list, 'CRT-ModBin')
+    """
