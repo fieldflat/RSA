@@ -46,7 +46,7 @@ def modulo(x, y, mod_count):
     質問その1：この条件分岐は必要かどうか？
     """
     #print('modulo({0}, {1}, {2}) = '.format(x, y, mod_count))
-    if x > y:
+    if (x > y) or (x < 0):
         mod_count += 1
         x = x % y
     #print('{0}, {1}'.format(x, mod_count))
