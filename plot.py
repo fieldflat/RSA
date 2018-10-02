@@ -60,6 +60,7 @@ def plotting(mod_list, mult_list, sum_list, title):
     #plt.plot(mod_count, mod_freq, label='mod')
     plt.legend(loc = 'upper left')
     plt.savefig('graph/{0}_mod_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
+    #plt.savefig('graph/{0}_{1}_{2}_{3}_Loop{4}_p{5}_q{6}/{0}_mod_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
 
@@ -74,6 +75,7 @@ def plotting(mod_list, mult_list, sum_list, title):
     #plt.plot(mult_count, mult_freq, label='mult')
     plt.legend(loc = 'upper left')
     plt.savefig('graph/{0}_mult_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
+    #plt.savefig('graph/{0}_{1}_{2}_{3}_Loop{4}_p{5}_q{6}/{0}_mult_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
     sum_freq = np.array(sum_freq_list)
@@ -87,6 +89,7 @@ def plotting(mod_list, mult_list, sum_list, title):
     #plt.plot(sum_count, sum_freq, label='sum')
     plt.legend(loc = 'upper left')
     plt.savefig('graph/{0}_sum_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
+    #plt.savefig('graph/{0}_{1}_{2}_{3}_Loop{4}_p{5}_q{6}/{0}_sum_{1}_{2}_{3}_Loop{4}_p{5}_q{6}.png'.format(title, d_length, d_top_bit, d_weight, loop_times, main.p, main.q))
     plt.show()
 
     """
