@@ -11,6 +11,8 @@ q = main.q
 N = main.N
 phi_N = main.phi_N
 
+flag = 100
+
 #
 # バイナリ法
 # c, dを入力として, m = c**d mod N を返す
@@ -49,6 +51,8 @@ def modulo(x, y, mod_count):
     if (x > y) or (x < 0):
         mod_count += 1
         x = x % y
+    else:
+        print('countしなかったよ*******************************************************')
     #print('{0}, {1}'.format(x, mod_count))
     return x, mod_count
 
@@ -58,9 +62,26 @@ def modulo(x, y, mod_count):
 #
 def multiply(x, y, mult_count):
 
+    global flag
+    #print(flag)
     #print('multiply({0}, {1}, {2}) = '.format(x, y, mult_count) )
     mult_count += 1
     ans = x * y
+
+
+    if (x == y):
+        flag = 1
+        #print('**********************  flag = {0}'.format(flag))
+    else:
+        flag = 0
+
+    """
+    if (x != y) and (ans >= N):
+        print('1')
+    elif (x != y) and (ans < N):
+        print('0')
+    """
+
     #print('{0}, {1}'.format(ans, mult_count))
     return ans, mult_count
 
@@ -77,3 +98,13 @@ def binary_d(d):
             break
     array_d.reverse()
     return array_d
+
+
+def average(list):
+    sum = 0
+    for num in list:
+        sum += num
+
+    m = sum / len(list)
+
+    print("平均：{0}".format(m))
