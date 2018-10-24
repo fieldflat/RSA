@@ -7,11 +7,29 @@ import montgomery as mon
 #
 # B*b = 1 (mod n)となるbを返す.
 #
+"""
 def mod_equal_1_crt(B, n):
     for b in range(2, n):
         if (B*b) % n == 1:
             break
     return b
+"""
+
+def egcd(a, b):
+ (x, lastx) = (0, 1)
+ (y, lasty) = (1, 0)
+ while (b != 0):
+  q = a // b
+  (a, b) = (b, a%b)
+  (x, lastx) = (lastx - q*x, x)
+  (y, lasty) = (lasty - q*y, y)
+ return (lastx, lasty, a)
+
+def mod_equal_1_crt(B, n):
+ (inv, q, gcd_val) = egcd(B, n)
+
+ return inv%n
+
 
 #
 # CRT-ModBinを実行するメソッド
