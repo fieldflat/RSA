@@ -87,17 +87,19 @@ def crt(c,d,N,p,q):
     #c_p = c % p
     c_p, mod_count = bin.modulo(c, p, mod_count)
     #print('c_p = c % p = {0} % {1} = {2}'.format(c, p, c_p))
-    #print('d_p = d % (p-1) = {0} % {1} = {2}'.format(d, p-1, d_p))
+    print('d_p = d % (p-1) = {0} % {1} = {2}'.format(d, p-1, d_p))
+    print('d_pの2進数表現 = {0}'.format(bin.binary_d(d_p)))
 
     #c_q = c % q
     c_q, mod_count = bin.modulo(c, q, mod_count)
     #print('c_q = c % q = {0} % {1} = {2}'.format(c, q, c_q))
-    #print('d_q = d % (q-1) = {0} % {1} = {2}'.format(d, q-1, d_q))
+    print('d_q = d % (q-1) = {0} % {1} = {2}'.format(d, q-1, d_q))
+    print('d_qの2進数表現 = {0}'.format(bin.binary_d(d_q)))
 
-    m_p, mod_count1, mult_count1 = mon.mod_bin(c_p, d_p, p)
+    m_p, mod_count1, mult_count1, _, _, _ = mon.mod_bin(c_p, d_p, p)
     #print('(c_p)**(d_p) mod p = {0}'.format(m_p))
 
-    m_q, mod_count2, mult_count2 = mon.mod_bin(c_q, d_q, q)
+    m_q, mod_count2, mult_count2, _, _, _ = mon.mod_bin(c_q, d_q, q)
     #print('(c_q)**(d_q) mod q = {0}'.format(m_q))
 
     mod_count += (mod_count1 + mod_count2)

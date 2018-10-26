@@ -122,6 +122,7 @@ def mod_bin(c, d, N):
     global countMM
     global countMC
     global countNG
+
     countMM = 0
     countMC = 0
     countNG = 0
@@ -146,6 +147,7 @@ def mod_bin(c, d, N):
     #print('cr = c * R_2 = {0}'.format(cr))
     #print('MR(c*R_2)の実行>>>')
     large_C, mod_count, mult_count = MR(cr, mod_count, mult_count, N_dash, N)
+    print('largc_C = {0}'.format(large_C))
     #print('MR({1}): large_C={0}'.format(large_C, cr))
     large_M = large_C
     array_d = bin.binary_d(d)
@@ -171,6 +173,6 @@ def mod_bin(c, d, N):
     print('countMC = {0}'.format(countMC))
     print('countNG = {0}'.format(countNG))
 
-    return m, mod_count, mult_count
+    return m, mod_count, mult_count, countMM, countMC, countNG
 
 #N_dash = mod_equal_minus_1(N, R)

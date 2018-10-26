@@ -132,3 +132,27 @@ def frequency(list):
         freq_list[item] += 1
 
     return count_list, freq_list
+
+
+
+def count_plotting(list):
+    x_list = []
+    y_list = []
+    y_dict = {}
+
+    for i in list:
+        if i in y_dict.keys():
+            y_dict[i] += 1
+        else:
+            y_dict[i] = 1
+
+    for key, value in y_dict.items():
+        print('{0}の個数: {1}'.format(key, value))
+        x_list.append(key)
+        y_list.append(value)
+
+
+    plt.plot(x_list, y_list)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
