@@ -18,7 +18,11 @@ R_2 = R*R % N
 
 countMM = 0
 countMC = 0
-countNG = 0
+countNG_MM = 0
+countNG_MC = 0
+
+MM_list = []
+MC_list = []
 
 #
 # N*(N') mod R = -1となるN'を返す.
@@ -59,7 +63,8 @@ def MR(T, mod_count, mult_count, N_dash, N):
 
     global countMM
     global countMC
-    global countNG
+    global countNG_MM
+    global countNG_MC
     #global flag
     #print('N: {0}'.format(N))
     array_N = bin.binary_d(N)
@@ -90,24 +95,28 @@ def MR(T, mod_count, mult_count, N_dash, N):
     if m_2 <= N:
         #print('MRにおいてmod_countを余分にインクリメントしませんでした.\n')
         #print('@@@@@@@ flag = {0}'.format(flag))
-        countNG += 1
+        #countNG += 1
         #print('NO:                countNG = {0}'.format(countNG))
         if flag == 1:
-            countNG += 0
+            countNG_MM += 1
             #print('NO:                countNG = {0}'.format(countNG))
             #print('')
-
+        else:
+            countNG_MC += 1
+        #print('余分に剰余計算しなかった結果 = {0}'.format(m_2))
         return m_2, mod_count, mult_count
     else:
-        #print('MRにおいてmod_countを余分にインクリメントしました.')
+        #print('MRにおいてmod_countを余分にインクリメントしました. m_2 = {0}'.format(m_2))
         """
         質問その3：m_2 > Nのとき, mod_countを1インクリメントすべきかどうか.
         """
         if flag == 1:
             countMM += 1
+            #print('```````````````````````````countMM:  m_2 = m_2 - N = {0} - {1} = {2}\n'.format(m_2, N, m_2-N))
             #print('YES: countMM={0}'.format(countMM))
         else:
             countMC += 1
+            #print('///////////////////////////countMC:  m_2 = m_2 - N = {0} - {1} = {2}\n'.format(m_2, N, m_2-N))
             #print('YES: countMC={0}'.format(countMC))
 
         mod_count += 1
@@ -121,11 +130,15 @@ def mod_bin(c, d, N):
 
     global countMM
     global countMC
-    global countNG
+    global countNG_MM
+    global countNG_MC
+    global MM_list
+    global MC_list
 
     countMM = 0
     countMC = 0
-    countNG = 0
+    countNG_MM = 0
+    countNG_MC = 0
 
     array_N = bin.binary_d(N)
     #print('\n\narray_N = {0}'.format(array_N))
@@ -157,12 +170,14 @@ def mod_bin(c, d, N):
         #print('MM = {0}'.format(mm))
         #print('MR(M*M)の実行>>>')
         large_M, mod_count, mult_count = MR(mm, mod_count, mult_count, N_dash, N)
+        #MM_list.append(large_M // 100000000000)
         #print('MR({1}) large_M={0}'.format(large_M, mm))
         if array_d[i] == 1:
             mc, mult_count = bin.multiply(large_M, large_C, mult_count)
             #print('MC = {0}'.format(mc))
             #print('MR(M*C)の実行>>>')
             large_M, mod_count, mult_count = MR(mc, mod_count, mult_count, N_dash, N)
+            #MC_list.append(large_M // 100000000000)
             #print('MR({1}) large_M={0}'.format(large_M, mc))
     #print('MR(M)の実行>>>')
     bin.flag = 0
@@ -171,8 +186,9 @@ def mod_bin(c, d, N):
 
     print('countMM = {0}'.format(countMM))
     print('countMC = {0}'.format(countMC))
-    print('countNG = {0}'.format(countNG))
+    print('countNG_MM = {0}'.format(countNG_MM))
+    print('countNG_MC = {0}'.format(countNG_MC))
 
-    return m, mod_count, mult_count, countMM, countMC, countNG
+    return m, mod_count, mult_count, countMM, countMC, countNG_MM, countNG_MC
 
 #N_dash = mod_equal_minus_1(N, R)

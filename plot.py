@@ -155,4 +155,5 @@ def count_plotting(list):
     plt.plot(x_list, y_list)
     plt.xlabel('x')
     plt.ylabel('y')
+    #plt.ylim(0, 130)
     plt.show()
